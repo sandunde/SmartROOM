@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import PageContent from "./Components/PageContent";
+import AppHeader from "./Components/AppHeader";
+import SideBar from "./Components/SideBar";
+import "./App.css";
+import { useLocation } from "react-router-dom";
 
-function App() {
+const App = () => {
+  let location = useLocation();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {(location.pathname !== "/") && (location.pathname !== "/create-account" )? <AppHeader /> : null}
+      <div className="SideMenuAndPageContent">
+        {(location.pathname !== "/") && (location.pathname !== "/create-account" )? <SideBar /> : null}
+        <PageContent />
+      </div>
     </div>
   );
-}
+};
 
 export default App;

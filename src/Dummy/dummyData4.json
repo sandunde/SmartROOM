@@ -1,0 +1,26 @@
+[
+  {
+    "id": 4,
+    "img": "/static/media/img4.b2c95e2cdc8d8dc72333.jpg",
+    "date": "INTERNET ● Mar 5, 2018",
+    "title": "Raspberry Pi 3 vs Arduino Uno Rev3",
+    "body": "The Raspberry Pi 3 is a Single Board Computer (SBC). This means that the board is a fully functional computer with its own dedicated processor, memory, and can run an operating system (runs on Linux)",
+    "link": "https://www.arrow.com/en/research-and-events/articles/comparing-arduino-uno-and-raspberry-pi-3"
+  },
+  {
+    "id": 5,
+    "img": "/static/media/img5.49573a7c05e4a9edd413.jpg",
+    "date": "INTERNET ● Apr 30, 2018",
+    "title": "Arduino Bluetooth Control: Arduino to Arduino Control Via Bluetooth",
+    "body": "Using Bluetooth serial signals, your phone controls the Arduino as perfectly as if the two had a hardware connection. Apps like Bluetooth Terminal   ",
+    "link": "https://www.arrow.com/en/research-and-events/articles/arduino-to-arduino-control-via-bluetooth"
+  },
+  {
+    "id": 6,
+    "img": "/static/media/img6.67963f0386246cccf803.jpg",
+    "date": "INTERNET ● May 16, 2021",
+    "title": "Arduino Uno vs Arduino MKR Series",
+    "body": "Most people know the size for the Uno (being 2.7” x 2.1”), but since the MKR series are built for IoT development, its form factor is efficiently packed to fit in almost any design with its 2.42” x 0.98”",
+    "link": "https://www.arrow.com/en/research-and-events/articles/arduino-uno-vs-mkr-series"
+  }
+]

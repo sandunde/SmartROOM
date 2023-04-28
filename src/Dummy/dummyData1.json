@@ -1,0 +1,28 @@
+[
+    {
+      "id": 1,
+      "module": "Light 3 ON",
+      "date": "11 JUL 8:10 PM"
+    },
+    {
+      "id": 2,
+      "module": "Light 2 OFF",
+      "date": "1 JUL 6:30 PM"
+    },
+    {
+      "id": 3,
+      "module": "A/C ON",
+      "date": "1 JUL 6:00 PM"
+    },
+    {
+      "id": 4,
+      "module": "Light 3 OFF",
+      "date": "1 JUL 1:21 AM"
+    },
+    {
+      "id": 5,
+      "module": "A/C OFF",
+      "date": "09 JUL 8:50 PM"
+    }
+  ]
+  

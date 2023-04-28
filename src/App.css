@@ -1,38 +1,70 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+  display       : flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* width      : 100vw; */
+  height        : 94vh;
 }
 
-.App-link {
-  color: #61dafb;
+.SideMenuAndPageContent {
+  background-color: rgba(0, 0, 0, 0.05);
+  display         : flex;
+  flex            : 1;
+  justify-content : flex-start;
+  align-items     : flex-start;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.AppHeader {
+  height          : 50px;
+  display         : flex;
+  justify-content : space-between;
+  align-items     : center;
+  padding         : 4px 20px 4px 12px;
+  border-bottom   : 1px solid rgba(0, 0, 0, 0.15);
+  background-image: linear-gradient(to right, #16a8dc, #2e93b7);
+}
+
+.SideMenu {
+  height: 100%;
+}
+
+.SideMenuVertical {
+  height: 100%;
+}
+
+.round {
+  list-style-type: none;
+  padding-left   : 1.2em;
+}
+
+.round li{
+  font-size: 19px;
+  color: #232D42;
+}
+
+.round li:before {
+  content     : "o";
+  color       : #3A57E8;
+  font-size   : 2.2em;
+  margin-right: 0.5em;
+}
+
+.round p {
+  margin-left: 4.5vh;
+  margin-top : -0.5vh;
+  color: #8A92A6;
+  font-size: 16px;
+}
+
+.vertical-line {
+  margin-left: 12px;
+  margin-top : -44px;
+  border-left: 1px solid #ccc;
+  height     : 60px;
+}
+
+.vertical-line2 {
+  margin-left: 12px;
+  margin-top : -44px;
+  border-left: 1px solid #ccc;
+  height     : 30px;
 }

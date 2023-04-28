@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "img" : "/static/media/officeLap1.ec91d2a581d85648caa2.jpg",
+    "date": "INTERNET ● Feb 28, 2021",
+    "title": "Arduino Uno vs. Mega vs. Micro",
+    "body": "The Micro comes in, being true to its name, at 0.7” x 1.9” making it one of the smallest microcontroller boards out there. On the opposite side of the spectrum the Arduino Mega 2560 board dimensions are about 4” x 2.1”,",
+    "link": "https://www.arrow.com/en/research-and-events/articles/arduino-uno-vs-mega-vs-micro"
+  },
+  {
+    "id": 2,
+    "img" : "/static/media/officeLap2.0d89bbd4928e1aa3bce2.jpg",
+    "date": "INTERNET ● June 28, 2021",
+    "title": "Ultrasonic Sensors: How They Work (and How to Use Them with Arduino)",
+    "body": "Ultrasonic sensors work by emitting sound waves at a frequency too high for humans to hear. They then wait for the sound to be reflected back",
+    "link": "https://www.arrow.com/en/research-and-events/articles/ultrasonic-sensors-how-they-work-and-how-to-use-them-with-arduino"
+  },
+  {
+    "id": 3,
+    "img" : "/static/media/img3.409b87d5e7053ea63c61.jpg",
+    "date": "INTERNET ● Dec 17, 2017",
+    "title": "Arduino Mega 2560 Board: Specs, Pinout, & Capabilities",
+    "body": "As stated before, the brain behind the Arduino Mega is the ATmega2560. Thanks to the ATmega2560 (and its associated crystal oscillator),",
+    "link": "https://www.arrow.com/en/research-and-events/articles/arduino-mega-2560-overview"
+  }
+]
