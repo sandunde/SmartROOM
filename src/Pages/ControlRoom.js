@@ -6,14 +6,14 @@ import airC from "../Assets/airC.png";
 import { BulbTwoTone, BulbOutlined } from "@ant-design/icons";
 
 const ControlRoom = () => {
-  const [isOn, setIsOn] = useState(true);
+  const [isOn, setIsOn] = useState(false);
   const [isOn2, setIsOn2] = useState(true);
-  const [isOn3, setIsOn3] = useState(true);
+  const [isOn3, setIsOn3] = useState(false);
   const [isOn4, setIsOn4] = useState(true);
-  const [isOnFan, setIsOnFan] = useState(true);
+  const [isOnFan, setIsOnFan] = useState(false);
   const [isOnFan2, setIsOnFan2] = useState(true);
   const [isOnFan3, setIsOnFan3] = useState(true);
-  const [isOnAc, setIsOnAc] = useState(true);
+  const [isOnAc, setIsOnAc] = useState(false);
   const [isOnAc2, setIsOnAc2] = useState(true);
   const [state, setState] = useState("ON");
   const [state2, setState2] = useState("OFF");
