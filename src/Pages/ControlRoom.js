@@ -4,6 +4,8 @@ import bulbImg from "../Assets/lightbulb.png";
 import fan from "../Assets/fan.png";
 import airC from "../Assets/airC.png";
 import { BulbTwoTone, BulbOutlined } from "@ant-design/icons";
+import { firestore } from '../Firebase/firebase';
+import {addDoc, collection} from "@firebase/firestore";
 
 const ControlRoom = () => {
   const [isOn, setIsOn] = useState(false);
@@ -24,6 +26,7 @@ const ControlRoom = () => {
   const [stateFan3, setStateFan3] = useState("OFF");
   const [stateAc, setStateAc] = useState("ON");
   const [stateAc2, setStateAc2] = useState("OFF");
+  const ref = collection(firestore, "message");
 
   const [disabled, setDisabled] = useState(false);
   const onChange = (checked) => {
@@ -107,12 +110,21 @@ const ControlRoom = () => {
     });
   };
 
-  const handleClick = () => {
+  const handleClick = async(e) => {
     setIsOn(!isOn);
+    // let data= {message : isOn}
     if (isOn === true) {
       setState("ON");
+      
+      
     } else {
       setState("OFF");
+    }
+    let data= {message : state}
+    try{
+      addDoc(ref,data)
+    }catch (e) {
+      console.log(e)
     }
   };
 
