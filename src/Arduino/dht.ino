@@ -20,7 +20,7 @@
 
 #define API_KEY "AIzaSyBm66GUYvtwnrG8QcvBkXLqyBLo5Vog_9Y"
 
-#define DATABASE_URL "light-intensity-sensor-t-e5e6c-default-rtdb.firebaseio.com" //<databaseName>.firebaseio.com or <databaseName>.<region>.firebasedatabase.app
+#define DATABASE_URL "light-intensity-sensor-t-e5e6c-default-rtdb.firebaseio.com" 
 
 #define USER_EMAIL "ishini.20200918@iit.ac.lk"
 #define USER_PASSWORD "12345678"
