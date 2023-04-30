@@ -101,7 +101,7 @@ const Dashboard = () => {
                 >
                   Temperature
                 </p>
-                <p style={{ marginTop: "-10px" }}>25°C</p>
+                <p style={{ marginTop: "-10px" }}>29.8°C</p>
               </div>
             </div>
             <div
@@ -161,7 +161,7 @@ const Dashboard = () => {
                 >
                   Intensity
                 </p>
-                <p style={{ marginTop: "-10px" }}>65 I</p>
+                <p style={{ marginTop: "-10px" }}>64.17 I</p>
               </div>
             </div>
           </div>
@@ -208,7 +208,7 @@ const Dashboard = () => {
                   >
                     Light/ Air Conditioner
                   </p>
-                  <p style={{ marginTop: "-10px" }}>ON</p>
+                  <p style={{ marginTop: "-10px" }}>OFF</p>
                 </div>
               </div>
             </a>
