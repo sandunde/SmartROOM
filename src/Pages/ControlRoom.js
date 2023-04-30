@@ -4,8 +4,8 @@ import bulbImg from "../Assets/lightbulb.png";
 import fan from "../Assets/fan.png";
 import airC from "../Assets/airC.png";
 import { BulbTwoTone, BulbOutlined } from "@ant-design/icons";
-import { firestore } from '../Firebase/firebase';
-import {addDoc, collection} from "@firebase/firestore";
+import { firestore } from "../Firebase/firebase";
+import { addDoc, collection } from "@firebase/firestore";
 
 const ControlRoom = () => {
   const [isOn, setIsOn] = useState(false);
@@ -110,21 +110,18 @@ const ControlRoom = () => {
     });
   };
 
-  const handleClick = async(e) => {
+  const handleClick = async (e) => {
     setIsOn(!isOn);
-    // let data= {message : isOn}
     if (isOn === true) {
       setState("ON");
-      
-      
     } else {
       setState("OFF");
     }
-    let data= {message : state}
-    try{
-      addDoc(ref,data)
-    }catch (e) {
-      console.log(e)
+    let data = { lightOneMessage: "LIGHT ONE IS " + state };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -135,6 +132,12 @@ const ControlRoom = () => {
     } else {
       setState2("OFF");
     }
+    let data = { lightTwoMessage: "LIGHT TWO IS " + state };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleClick3 = () => {
@@ -144,6 +147,12 @@ const ControlRoom = () => {
     } else {
       setState3("OFF");
     }
+    let data = { lightThreeMessage: "LIGHT THREE IS " + state };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleClick4 = () => {
@@ -152,6 +161,12 @@ const ControlRoom = () => {
       setState4("ON");
     } else {
       setState4("OFF");
+    }
+    let data = { lightFourMessage: "LIGHT FOUR IS " + state };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -163,6 +178,12 @@ const ControlRoom = () => {
       setStateFan("OFF");
       showModal();
     }
+    let data = { fanOneMessage: "FAN ONE IS " + state };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleClickFan2 = () => {
@@ -172,6 +193,12 @@ const ControlRoom = () => {
     } else {
       setStateFan2("OFF");
       showModal();
+    }
+    let data = { fanTwoMessage: "FAN TWO IS " + state };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -183,6 +210,12 @@ const ControlRoom = () => {
       setStateFan3("OFF");
       showModal();
     }
+    let data = { fanThreeMessage: "FAN THREE IS " + state };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleClickAc = () => {
@@ -193,6 +226,12 @@ const ControlRoom = () => {
       setStateAc("OFF");
       showModalAc();
     }
+    let data = { acOneMessage: "AC ONE IS " + state };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleClickAc2 = () => {
@@ -202,6 +241,12 @@ const ControlRoom = () => {
     } else {
       setStateAc2("OFF");
       showModalAc();
+    }
+    let data = { acTwoMessage: "AC TWO IS " + state };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
     }
   };
 
