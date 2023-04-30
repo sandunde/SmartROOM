@@ -1,4 +1,3 @@
-// master
 #include <Wire.h>
 void setup() {
   Serial.begin(9600);
@@ -12,7 +11,7 @@ void loop() {
 void receiveEvent(int byteCount) {
   byte value = Wire.read();
   float h = Wire.read(); 
-  float t = Wire.read(); 
+  float t = Wire.read();
   int p = Wire.read(); 
   Serial.print(F("Humidity: "));
   Serial.print(h);
