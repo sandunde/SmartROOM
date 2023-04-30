@@ -9,23 +9,25 @@ import { addDoc, collection } from "@firebase/firestore";
 
 const ControlRoom = () => {
   const [isOn, setIsOn] = useState(false);
-  const [isOn2, setIsOn2] = useState(true);
+  const [isOn2, setIsOn2] = useState(false);
   const [isOn3, setIsOn3] = useState(false);
-  const [isOn4, setIsOn4] = useState(true);
+  const [isOn4, setIsOn4] = useState(false);
   const [isOnFan, setIsOnFan] = useState(false);
-  const [isOnFan2, setIsOnFan2] = useState(true);
-  const [isOnFan3, setIsOnFan3] = useState(true);
+  const [isOnFan2, setIsOnFan2] = useState(false);
+  const [isOnFan3, setIsOnFan3] = useState(false);
   const [isOnAc, setIsOnAc] = useState(false);
-  const [isOnAc2, setIsOnAc2] = useState(true);
+  const [isOnAc2, setIsOnAc2] = useState(false);
   const [state, setState] = useState("ON");
-  const [state2, setState2] = useState("OFF");
+  const [state2, setState2] = useState("ON");
   const [state3, setState3] = useState("ON");
-  const [state4, setState4] = useState("OFF");
+  const [state4, setState4] = useState("ON");
   const [stateFan, setStateFan] = useState("ON");
-  const [stateFan2, setStateFan2] = useState("OFF");
-  const [stateFan3, setStateFan3] = useState("OFF");
+  const [stateFan2, setStateFan2] = useState("ON");
+  const [stateFan3, setStateFan3] = useState("ON");
   const [stateAc, setStateAc] = useState("ON");
-  const [stateAc2, setStateAc2] = useState("OFF");
+  const [stateAc2, setStateAc2] = useState("ON");
+  const [fanCount, setFanCount] = useState(4);
+  const [acCount, setAcCount] = useState(25);
   const ref = collection(firestore, "message");
 
   const [disabled, setDisabled] = useState(false);
@@ -34,7 +36,10 @@ const ControlRoom = () => {
   };
 
   const handleChange = (value) => {
-    console.log(`selected ${value}`);
+    setFanCount(value);
+  };
+  const handleChangeAc = (value) => {
+    setAcCount(value);
   };
 
   const [api, contextHolder] = notification.useNotification();
@@ -117,7 +122,9 @@ const ControlRoom = () => {
     } else {
       setState("OFF");
     }
-    let data = { lightOneMessage: "LIGHT ONE IS " + state };
+    let data = {
+      lightOneMessage: state,
+    };
     try {
       addDoc(ref, data);
     } catch (e) {
@@ -132,12 +139,6 @@ const ControlRoom = () => {
     } else {
       setState2("OFF");
     }
-    let data = { lightTwoMessage: "LIGHT TWO IS " + state };
-    try {
-      addDoc(ref, data);
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   const handleClick3 = () => {
@@ -147,12 +148,6 @@ const ControlRoom = () => {
     } else {
       setState3("OFF");
     }
-    let data = { lightThreeMessage: "LIGHT THREE IS " + state };
-    try {
-      addDoc(ref, data);
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   const handleClick4 = () => {
@@ -161,12 +156,6 @@ const ControlRoom = () => {
       setState4("ON");
     } else {
       setState4("OFF");
-    }
-    let data = { lightFourMessage: "LIGHT FOUR IS " + state };
-    try {
-      addDoc(ref, data);
-    } catch (e) {
-      console.log(e);
     }
   };
 
@@ -178,7 +167,9 @@ const ControlRoom = () => {
       setStateFan("OFF");
       showModal();
     }
-    let data = { fanOneMessage: "FAN ONE IS " + state };
+    let data = {
+      fanOneMessage: stateFan,
+    };
     try {
       addDoc(ref, data);
     } catch (e) {
@@ -194,12 +185,6 @@ const ControlRoom = () => {
       setStateFan2("OFF");
       showModal();
     }
-    let data = { fanTwoMessage: "FAN TWO IS " + state };
-    try {
-      addDoc(ref, data);
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   const handleClickFan3 = () => {
@@ -209,12 +194,6 @@ const ControlRoom = () => {
     } else {
       setStateFan3("OFF");
       showModal();
-    }
-    let data = { fanThreeMessage: "FAN THREE IS " + state };
-    try {
-      addDoc(ref, data);
-    } catch (e) {
-      console.log(e);
     }
   };
 
@@ -226,7 +205,9 @@ const ControlRoom = () => {
       setStateAc("OFF");
       showModalAc();
     }
-    let data = { acOneMessage: "AC ONE IS " + state };
+    let data = {
+      acOneMessage: stateAc,
+    };
     try {
       addDoc(ref, data);
     } catch (e) {
@@ -242,12 +223,6 @@ const ControlRoom = () => {
       setStateAc2("OFF");
       showModalAc();
     }
-    let data = { acTwoMessage: "AC TWO IS " + state };
-    try {
-      addDoc(ref, data);
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -257,9 +232,16 @@ const ControlRoom = () => {
   const showModal = () => {
     setIsModalOpen(true);
   };
-
   const handleOk = () => {
     setIsModalOpen(false);
+    let data = {
+      fanSpeed: fanCount,
+    };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleCancel = () => {
@@ -272,6 +254,14 @@ const ControlRoom = () => {
 
   const handleOkAc = () => {
     setIsModalOpenAc(false);
+    let data = {
+      acSpeed: acCount,
+    };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleCancelAc = () => {
@@ -284,7 +274,7 @@ const ControlRoom = () => {
       <div style={{ display: "flex" }}>
         <div
           style={{
-            backgroundColor: state === "ON" ? "black" : "white",
+            backgroundColor: state === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -328,7 +318,7 @@ const ControlRoom = () => {
         </div>
         <div
           style={{
-            backgroundColor: state2 === "ON" ? "black" : "white",
+            backgroundColor: state2 === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -362,7 +352,6 @@ const ControlRoom = () => {
             <Button
               type="primary"
               onClick={() => {
-                // showModal();
                 handleClick2();
                 openNotification2("top");
               }}
@@ -373,7 +362,7 @@ const ControlRoom = () => {
         </div>
         <div
           style={{
-            backgroundColor: state3 === "ON" ? "black" : "white",
+            backgroundColor: state3 === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -417,7 +406,7 @@ const ControlRoom = () => {
         </div>
         <div
           style={{
-            backgroundColor: state4 === "ON" ? "black" : "white",
+            backgroundColor: state4 === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -463,7 +452,7 @@ const ControlRoom = () => {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{
-            backgroundColor: stateFan === "ON" ? "black" : "white",
+            backgroundColor: stateFan === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -544,7 +533,7 @@ const ControlRoom = () => {
         </div>
         <div
           style={{
-            backgroundColor: stateFan2 === "ON" ? "black" : "white",
+            backgroundColor: stateFan2 === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -584,11 +573,48 @@ const ControlRoom = () => {
             >
               {isOnFan2 ? "ON" : "OFF"}
             </Button>
+            <Modal
+              title="Control Fan 2"
+              open={isModalOpen}
+              onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <p>Set the Fan Speed</p>
+              <Select
+                defaultValue="1"
+                style={{
+                  width: 120,
+                }}
+                onChange={handleChange}
+                options={[
+                  {
+                    value: "1",
+                    label: "1",
+                  },
+                  {
+                    value: "2",
+                    label: "2",
+                  },
+                  {
+                    value: "3",
+                    label: "3",
+                  },
+                  {
+                    value: "4",
+                    label: "4",
+                  },
+                  {
+                    value: "5",
+                    label: "5",
+                  },
+                ]}
+              />
+            </Modal>
           </div>
         </div>
         <div
           style={{
-            backgroundColor: stateFan3 === "ON" ? "black" : "white",
+            backgroundColor: stateFan3 === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -634,7 +660,7 @@ const ControlRoom = () => {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{
-            backgroundColor: stateAc === "ON" ? "black" : "white",
+            backgroundColor: stateAc === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -682,11 +708,11 @@ const ControlRoom = () => {
             >
               <p>Set the Fan Speed</p>
               <Select
-                defaultValue="1"
+                defaultValue="25"
                 style={{
                   width: 120,
                 }}
-                onChange={handleChange}
+                onChange={handleChangeAc}
                 options={[
                   {
                     value: "LO",
@@ -775,7 +801,7 @@ const ControlRoom = () => {
         </div>
         <div
           style={{
-            backgroundColor: stateAc2 === "ON" ? "black" : "white",
+            backgroundColor: stateAc2 === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
