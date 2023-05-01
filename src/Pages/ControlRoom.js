@@ -6,7 +6,7 @@ import airC from "../Assets/airC.png";
 import { BulbTwoTone, BulbOutlined } from "@ant-design/icons";
 import { firestore } from "../Firebase/firebase";
 import { addDoc, collection } from "@firebase/firestore";
-import axios from "axios";
+// import axios from 'axios';
 
 const ControlRoom = () => {
   const [isOn, setIsOn] = useState(false);
@@ -274,13 +274,13 @@ const ControlRoom = () => {
     }
   };
 
-  const AUTH_TOKEN = "-RZN_Eb-f1zioGsu82x7pPxt27d7icMJ";
-  const BLYNK_API_URL = `http://blynk-cloud.com/${AUTH_TOKEN}/update/2`;
+  // const AUTH_TOKEN = "-RZN_Eb-f1zioGsu82x7pPxt27d7icMJ";
+  // const BLYNK_API_URL = `http://blynk-cloud.com/${AUTH_TOKEN}/update/2`;
 
-  const turnOnLed = async () => {
-    const response = await axios.get(`${BLYNK_API_URL}/V0?value=1`);
-    return response.data;
-  };
+  // const turnOnLed = async () => {
+  //   const response = await axios.get(`${BLYNK_API_URL}/V0?value=1`);
+  //   return response.data;
+  // };
 
   const handleCancelAc = () => {
     setIsModalOpenAc(false);
@@ -328,7 +328,7 @@ const ControlRoom = () => {
               onClick={() => {
                 handleClick();
                 openNotification("bottom-right");
-                turnOnLed();
+                // turnOnLed();
               }}
             >
               {isOn ? "ON" : "OFF"}

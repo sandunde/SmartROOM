@@ -16,7 +16,7 @@ const Dashboard = () => {
         }}
       >
         <h1 style={{ marginLeft: "40px", marginTop: "10px", color: "White" }}>
-          Hello Dilan!
+          Hello Sandun!
         </h1>
         <h3 style={{ marginLeft: "40px", marginTop: "-20px", color: "White" }}>
           We are on a mission to help you better manage your room.

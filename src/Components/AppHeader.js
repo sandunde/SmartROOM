@@ -20,7 +20,7 @@ const AppHeader = () => {
             fontWeight: 500,
           }}
         >
-          Dilan Perera
+          Sandun De Silva
         </Text>
       </div>
       <Typography.Title style={{ color: "white",fontSize: 30}}>SmartROOM</Typography.Title>
