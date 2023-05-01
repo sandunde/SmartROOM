@@ -4,28 +4,31 @@ import bulbImg from "../Assets/lightbulb.png";
 import fan from "../Assets/fan.png";
 import airC from "../Assets/airC.png";
 import { BulbTwoTone, BulbOutlined } from "@ant-design/icons";
-import { firestore } from '../Firebase/firebase';
-import {addDoc, collection} from "@firebase/firestore";
+import { firestore } from "../Firebase/firebase";
+import { addDoc, collection } from "@firebase/firestore";
+import axios from "axios";
 
 const ControlRoom = () => {
   const [isOn, setIsOn] = useState(false);
-  const [isOn2, setIsOn2] = useState(true);
+  const [isOn2, setIsOn2] = useState(false);
   const [isOn3, setIsOn3] = useState(false);
-  const [isOn4, setIsOn4] = useState(true);
+  const [isOn4, setIsOn4] = useState(false);
   const [isOnFan, setIsOnFan] = useState(false);
-  const [isOnFan2, setIsOnFan2] = useState(true);
-  const [isOnFan3, setIsOnFan3] = useState(true);
+  const [isOnFan2, setIsOnFan2] = useState(false);
+  const [isOnFan3, setIsOnFan3] = useState(false);
   const [isOnAc, setIsOnAc] = useState(false);
-  const [isOnAc2, setIsOnAc2] = useState(true);
+  const [isOnAc2, setIsOnAc2] = useState(false);
   const [state, setState] = useState("ON");
-  const [state2, setState2] = useState("OFF");
+  const [state2, setState2] = useState("ON");
   const [state3, setState3] = useState("ON");
-  const [state4, setState4] = useState("OFF");
+  const [state4, setState4] = useState("ON");
   const [stateFan, setStateFan] = useState("ON");
-  const [stateFan2, setStateFan2] = useState("OFF");
-  const [stateFan3, setStateFan3] = useState("OFF");
+  const [stateFan2, setStateFan2] = useState("ON");
+  const [stateFan3, setStateFan3] = useState("ON");
   const [stateAc, setStateAc] = useState("ON");
-  const [stateAc2, setStateAc2] = useState("OFF");
+  const [stateAc2, setStateAc2] = useState("ON");
+  const [fanCount, setFanCount] = useState(4);
+  const [acCount, setAcCount] = useState(25);
   const ref = collection(firestore, "message");
 
   const [disabled, setDisabled] = useState(false);
@@ -34,7 +37,10 @@ const ControlRoom = () => {
   };
 
   const handleChange = (value) => {
-    console.log(`selected ${value}`);
+    setFanCount(value);
+  };
+  const handleChangeAc = (value) => {
+    setAcCount(value);
   };
 
   const [api, contextHolder] = notification.useNotification();
@@ -43,6 +49,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Light 1 is set to ${state}`,
       placement,
+      duration: 2,
     });
   };
 
@@ -51,6 +58,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Light 2 is set to ${state2}`,
       placement,
+      duration: 2,
     });
   };
 
@@ -59,6 +67,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Light 3 is set to ${state3}`,
       placement,
+      duration: 2,
     });
   };
 
@@ -67,6 +76,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Light 4 is set to ${state4}`,
       placement,
+      duration: 2,
     });
   };
 
@@ -75,6 +85,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Fan 1 is set to ${stateFan}`,
       placement,
+      duration: 2,
     });
   };
 
@@ -83,6 +94,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Fan 2 is set to ${stateFan2}`,
       placement,
+      duration: 2,
     });
   };
 
@@ -91,6 +103,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Fan 3 is set to ${stateFan3}`,
       placement,
+      duration: 2,
     });
   };
 
@@ -99,6 +112,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Air Conditioner 1 is set to ${stateAc}`,
       placement,
+      duration: 2,
     });
   };
 
@@ -107,24 +121,24 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Air Conditioner 2 is set to ${stateAc2}`,
       placement,
+      duration: 2,
     });
   };
 
-  const handleClick = async(e) => {
+  const handleClick = async (e) => {
     setIsOn(!isOn);
-    // let data= {message : isOn}
     if (isOn === true) {
       setState("ON");
-      
-      
     } else {
       setState("OFF");
     }
-    let data= {message : state}
-    try{
-      addDoc(ref,data)
-    }catch (e) {
-      console.log(e)
+    let data = {
+      lightOneMessage: state,
+    };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -163,6 +177,14 @@ const ControlRoom = () => {
       setStateFan("OFF");
       showModal();
     }
+    let data = {
+      fanOneMessage: stateFan,
+    };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleClickFan2 = () => {
@@ -193,6 +215,14 @@ const ControlRoom = () => {
       setStateAc("OFF");
       showModalAc();
     }
+    let data = {
+      acOneMessage: stateAc,
+    };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleClickAc2 = () => {
@@ -212,9 +242,16 @@ const ControlRoom = () => {
   const showModal = () => {
     setIsModalOpen(true);
   };
-
   const handleOk = () => {
     setIsModalOpen(false);
+    let data = {
+      fanSpeed: fanCount,
+    };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleCancel = () => {
@@ -227,6 +264,22 @@ const ControlRoom = () => {
 
   const handleOkAc = () => {
     setIsModalOpenAc(false);
+    let data = {
+      acSpeed: acCount,
+    };
+    try {
+      addDoc(ref, data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const AUTH_TOKEN = "-RZN_Eb-f1zioGsu82x7pPxt27d7icMJ";
+  const BLYNK_API_URL = `http://blynk-cloud.com/${AUTH_TOKEN}/update/2`;
+
+  const turnOnLed = async () => {
+    const response = await axios.get(`${BLYNK_API_URL}/V0?value=1`);
+    return response.data;
   };
 
   const handleCancelAc = () => {
@@ -239,7 +292,7 @@ const ControlRoom = () => {
       <div style={{ display: "flex" }}>
         <div
           style={{
-            backgroundColor: state === "ON" ? "black" : "white",
+            backgroundColor: state === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -274,7 +327,8 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClick();
-                openNotification("top");
+                openNotification("bottom-right");
+                turnOnLed();
               }}
             >
               {isOn ? "ON" : "OFF"}
@@ -283,7 +337,7 @@ const ControlRoom = () => {
         </div>
         <div
           style={{
-            backgroundColor: state2 === "ON" ? "black" : "white",
+            backgroundColor: state2 === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -317,9 +371,8 @@ const ControlRoom = () => {
             <Button
               type="primary"
               onClick={() => {
-                // showModal();
                 handleClick2();
-                openNotification2("top");
+                openNotification2("bottom-right");
               }}
             >
               {isOn2 ? "ON" : "OFF"}
@@ -328,7 +381,7 @@ const ControlRoom = () => {
         </div>
         <div
           style={{
-            backgroundColor: state3 === "ON" ? "black" : "white",
+            backgroundColor: state3 === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -363,7 +416,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClick3();
-                openNotification3("top");
+                openNotification3("bottom-right");
               }}
             >
               {isOn3 ? "ON" : "OFF"}
@@ -372,7 +425,7 @@ const ControlRoom = () => {
         </div>
         <div
           style={{
-            backgroundColor: state4 === "ON" ? "black" : "white",
+            backgroundColor: state4 === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -407,7 +460,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClick4();
-                openNotification4("top");
+                openNotification4("bottom-right");
               }}
             >
               {isOn4 ? "ON" : "OFF"}
@@ -418,7 +471,7 @@ const ControlRoom = () => {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{
-            backgroundColor: stateFan === "ON" ? "black" : "white",
+            backgroundColor: stateFan === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -453,7 +506,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClickFan();
-                openNotificationFan("top");
+                openNotificationFan("bottom-right");
               }}
             >
               {isOnFan ? "ON" : "OFF"}
@@ -499,7 +552,7 @@ const ControlRoom = () => {
         </div>
         <div
           style={{
-            backgroundColor: stateFan2 === "ON" ? "black" : "white",
+            backgroundColor: stateFan2 === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -534,16 +587,53 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClickFan2();
-                openNotificationFan2("top");
+                openNotificationFan2("bottom-right");
               }}
             >
               {isOnFan2 ? "ON" : "OFF"}
             </Button>
+            <Modal
+              title="Control Fan 2"
+              open={isModalOpen}
+              onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <p>Set the Fan Speed</p>
+              <Select
+                defaultValue="1"
+                style={{
+                  width: 120,
+                }}
+                onChange={handleChange}
+                options={[
+                  {
+                    value: "1",
+                    label: "1",
+                  },
+                  {
+                    value: "2",
+                    label: "2",
+                  },
+                  {
+                    value: "3",
+                    label: "3",
+                  },
+                  {
+                    value: "4",
+                    label: "4",
+                  },
+                  {
+                    value: "5",
+                    label: "5",
+                  },
+                ]}
+              />
+            </Modal>
           </div>
         </div>
         <div
           style={{
-            backgroundColor: stateFan3 === "ON" ? "black" : "white",
+            backgroundColor: stateFan3 === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -578,7 +668,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClickFan3();
-                openNotificationFan3("top");
+                openNotificationFan3("bottom-right");
               }}
             >
               {isOnFan3 ? "ON" : "OFF"}
@@ -589,7 +679,7 @@ const ControlRoom = () => {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{
-            backgroundColor: stateAc === "ON" ? "black" : "white",
+            backgroundColor: stateAc === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -624,7 +714,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClickAc();
-                openNotificationAc("top");
+                openNotificationAc("bottom-right");
               }}
             >
               {isOnAc ? "ON" : "OFF"}
@@ -637,11 +727,11 @@ const ControlRoom = () => {
             >
               <p>Set the Fan Speed</p>
               <Select
-                defaultValue="1"
+                defaultValue="25"
                 style={{
                   width: 120,
                 }}
-                onChange={handleChange}
+                onChange={handleChangeAc}
                 options={[
                   {
                     value: "LO",
@@ -730,7 +820,7 @@ const ControlRoom = () => {
         </div>
         <div
           style={{
-            backgroundColor: stateAc2 === "ON" ? "black" : "white",
+            backgroundColor: stateAc2 === "OFF" ? "black" : "white",
             width: "36.5vh",
             height: "10vh",
             margin: "1vh",
@@ -765,7 +855,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClickAc2();
-                openNotificationAc2("top");
+                openNotificationAc2("bottom-right");
               }}
             >
               {isOnAc2 ? "ON" : "OFF"}
