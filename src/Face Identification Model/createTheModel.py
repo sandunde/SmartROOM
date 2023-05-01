@@ -23,7 +23,7 @@ while True:
         os.makedirs("people/" + person_name)
 
     # Start capturing frames for the person
-    for i in range(500):
+    for i in range(1000):
         # Capture frame-by-frame
         ret, frame = video_capture.read()
 
