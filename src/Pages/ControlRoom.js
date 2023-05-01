@@ -48,6 +48,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Light 1 is set to ${state}`,
       placement,
+      duration: 2
     });
   };
 
@@ -56,6 +57,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Light 2 is set to ${state2}`,
       placement,
+      duration: 2
     });
   };
 
@@ -64,6 +66,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Light 3 is set to ${state3}`,
       placement,
+      duration: 2
     });
   };
 
@@ -72,6 +75,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Light 4 is set to ${state4}`,
       placement,
+      duration: 2
     });
   };
 
@@ -80,6 +84,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Fan 1 is set to ${stateFan}`,
       placement,
+      duration: 2
     });
   };
 
@@ -88,6 +93,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Fan 2 is set to ${stateFan2}`,
       placement,
+      duration: 2
     });
   };
 
@@ -96,6 +102,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Fan 3 is set to ${stateFan3}`,
       placement,
+      duration: 2
     });
   };
 
@@ -104,6 +111,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Air Conditioner 1 is set to ${stateAc}`,
       placement,
+      duration: 2
     });
   };
 
@@ -112,6 +120,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Air Conditioner 2 is set to ${stateAc2}`,
       placement,
+      duration: 2,
     });
   };
 
@@ -309,7 +318,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClick();
-                openNotification("top");
+                openNotification("bottom-right");
               }}
             >
               {isOn ? "ON" : "OFF"}
@@ -353,7 +362,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClick2();
-                openNotification2("top");
+                openNotification2("bottom-right");
               }}
             >
               {isOn2 ? "ON" : "OFF"}
@@ -397,7 +406,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClick3();
-                openNotification3("top");
+                openNotification3("bottom-right");
               }}
             >
               {isOn3 ? "ON" : "OFF"}
@@ -441,7 +450,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClick4();
-                openNotification4("top");
+                openNotification4("bottom-right");
               }}
             >
               {isOn4 ? "ON" : "OFF"}
@@ -487,7 +496,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClickFan();
-                openNotificationFan("top");
+                openNotificationFan("bottom-right");
               }}
             >
               {isOnFan ? "ON" : "OFF"}
@@ -568,7 +577,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClickFan2();
-                openNotificationFan2("top");
+                openNotificationFan2("bottom-right");
               }}
             >
               {isOnFan2 ? "ON" : "OFF"}
@@ -649,7 +658,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClickFan3();
-                openNotificationFan3("top");
+                openNotificationFan3("bottom-right");
               }}
             >
               {isOnFan3 ? "ON" : "OFF"}
@@ -695,7 +704,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClickAc();
-                openNotificationAc("top");
+                openNotificationAc("bottom-right");
               }}
             >
               {isOnAc ? "ON" : "OFF"}
@@ -836,7 +845,7 @@ const ControlRoom = () => {
               type="primary"
               onClick={() => {
                 handleClickAc2();
-                openNotificationAc2("top");
+                openNotificationAc2("bottom-right");
               }}
             >
               {isOnAc2 ? "ON" : "OFF"}
