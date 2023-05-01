@@ -1,3 +1,25 @@
+## About our Project
+
+The solution proposed, SmartROOM, is a system implemented with the main objective of monitoring
+and managing comfort and convenience focused devices within the user’s living space
+(For the purpose of a testing prototype, the target area will be limited to one specific area of one room).
+It’s basic functionalities would be to sense and analyze the environmental conditions of this target area
+(i.e. Temperature, Humidity, Light Intensity), then provide necessary instructions to the respective
+devices in order to achieve the user’s comfort while ensuring minimum evergy consumption. SmartROOM
+will also target on monitoring the presence and activity of the user, in order to ensure no unnecessary
+devices remain turned on during periods of the user’s absence or inactivity.
+
+## Hardware Requirements
+
+2 ARDUINO MEGA 2560 BOARDS
+1 ESP32 CAM
+2 NODEMC ESP8266 
+1 DHT11 SENSORS
+1 GY-30
+1 OLED DISPLAY
+COUPLE OF BREADBOARDS
+COUPLE OF JUMPER WIRES
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
