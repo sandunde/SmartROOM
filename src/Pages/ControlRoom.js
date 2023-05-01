@@ -6,6 +6,7 @@ import airC from "../Assets/airC.png";
 import { BulbTwoTone, BulbOutlined } from "@ant-design/icons";
 import { firestore } from "../Firebase/firebase";
 import { addDoc, collection } from "@firebase/firestore";
+import axios from "axios";
 
 const ControlRoom = () => {
   const [isOn, setIsOn] = useState(false);
@@ -48,7 +49,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Light 1 is set to ${state}`,
       placement,
-      duration: 2
+      duration: 2,
     });
   };
 
@@ -57,7 +58,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Light 2 is set to ${state2}`,
       placement,
-      duration: 2
+      duration: 2,
     });
   };
 
@@ -66,7 +67,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Light 3 is set to ${state3}`,
       placement,
-      duration: 2
+      duration: 2,
     });
   };
 
@@ -75,7 +76,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Light 4 is set to ${state4}`,
       placement,
-      duration: 2
+      duration: 2,
     });
   };
 
@@ -84,7 +85,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Fan 1 is set to ${stateFan}`,
       placement,
-      duration: 2
+      duration: 2,
     });
   };
 
@@ -93,7 +94,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Fan 2 is set to ${stateFan2}`,
       placement,
-      duration: 2
+      duration: 2,
     });
   };
 
@@ -102,7 +103,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Fan 3 is set to ${stateFan3}`,
       placement,
-      duration: 2
+      duration: 2,
     });
   };
 
@@ -111,7 +112,7 @@ const ControlRoom = () => {
       message: `Notification`,
       description: `The state of Air Conditioner 1 is set to ${stateAc}`,
       placement,
-      duration: 2
+      duration: 2,
     });
   };
 
@@ -273,6 +274,14 @@ const ControlRoom = () => {
     }
   };
 
+  const AUTH_TOKEN = "-RZN_Eb-f1zioGsu82x7pPxt27d7icMJ";
+  const BLYNK_API_URL = `http://blynk-cloud.com/${AUTH_TOKEN}/update/2`;
+
+  const turnOnLed = async () => {
+    const response = await axios.get(`${BLYNK_API_URL}/V0?value=1`);
+    return response.data;
+  };
+
   const handleCancelAc = () => {
     setIsModalOpenAc(false);
   };
@@ -319,6 +328,7 @@ const ControlRoom = () => {
               onClick={() => {
                 handleClick();
                 openNotification("bottom-right");
+                turnOnLed();
               }}
             >
               {isOn ? "ON" : "OFF"}
